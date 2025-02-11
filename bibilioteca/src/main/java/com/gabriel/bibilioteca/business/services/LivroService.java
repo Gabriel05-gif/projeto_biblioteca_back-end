@@ -3,7 +3,7 @@ package com.gabriel.bibilioteca.business.services;
 import com.gabriel.bibilioteca.controller.dtos.LivroRequestDTO;
 import com.gabriel.bibilioteca.controller.dtos.LivroResponseDTO;
 import com.gabriel.bibilioteca.entities.Livro;
-import com.gabriel.bibilioteca.infrastructure.exceptions.LivroDuplicadoException;
+import com.gabriel.bibilioteca.infrastructure.exceptions.DuplicacaoException;
 import com.gabriel.bibilioteca.infrastructure.exceptions.LivroNaoEncontradoException;
 import com.gabriel.bibilioteca.infrastructure.repositories.LivroRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,8 +24,8 @@ public class LivroService {
     public LivroResponseDTO cadastrarLivro(LivroRequestDTO livroRequestDTO) {
         log.info("Iniciando processo de cadastro de livro");
         if (livroRepository.findByIsbn(livroRequestDTO.getIsbn()).isPresent()) {
-            log.error("Duplicação de livro com ISBN {}",livroRequestDTO.getIsbn());
-            throw new LivroDuplicadoException("Isbn já existe");
+            log.error("Duplicação de livro. ISBN {}",livroRequestDTO.getIsbn());
+            throw new DuplicacaoException();
         }
 
         Livro livro = new Livro();

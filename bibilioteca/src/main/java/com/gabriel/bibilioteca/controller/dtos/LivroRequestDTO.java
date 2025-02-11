@@ -1,5 +1,6 @@
 package com.gabriel.bibilioteca.controller.dtos;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,21 +10,21 @@ import lombok.Setter;
 public class LivroRequestDTO {
 
 
-    @NotNull
+    @NotBlank
     private String titulo;
 
-    @NotNull
+    @NotBlank
     private String autor;
 
-    @NotNull
+    @NotBlank
     private String genero;
 
-    @NotNull
+    @NotBlank
     private Integer anoPublicacao;
 
-    @NotNull
+    @NotBlank
     private String isbn;
 
-    @NotNull
+    @NotBlank
     private Integer quantidade;
 }
